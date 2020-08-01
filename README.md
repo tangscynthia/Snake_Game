@@ -1,4 +1,4 @@
-## Snake_Game
+## Snake_Game--"Eat Up Snakey"
 ## Description:-
 The player is represented as snake, which grows if it eats a dot.This is very easy in the early phase of the game but is increasingly more difficult as the length of the snake grows.And it displays the Score that how much has the snake eaten.
 ## OBJECTIVE :-
