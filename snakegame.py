@@ -20,7 +20,7 @@ pygame.display.set_caption('Eat Up Snakey By Anupam')
 clock = pygame.time.Clock()
 
 snake_block = 10
-snake_speed = 15
+snake_speed = 3
 
 font_style = pygame.font.SysFont("bahnschrift", 27)
 score_font = pygame.font.SysFont("comicsansms", 37)
@@ -55,8 +55,8 @@ def gameLoop():
     snake_List = []
     Length_of_snake = 1
 
-    foodx = round(random.randrange(0, dis_width - snake_block) / 10.0) * 10.0
-    foody = round(random.randrange(0, dis_height - snake_block) / 10.0) * 10.0
+    foodx = round(random.randrange(0+100, dis_width - snake_block-100) / 10.0) * 10.0
+    foody = round(random.randrange(0+100, dis_height - snake_block-100) / 10.0) * 10.0
 
     while not game_over:
 
