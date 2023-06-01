@@ -1,8 +1,15 @@
 import pygame
 import time
 import random
+import serial
 
 pygame.init()
+
+
+# # Serial port initialization
+# serial_port = serial.Serial('COM3', 9600)  # Replace with your Arduino port and baud rate
+
+print('pygame.USEREVENT', pygame.USEREVENT)
 
 white = (255, 255, 255)
 yellow = (255, 255, 102)
