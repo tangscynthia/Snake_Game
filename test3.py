@@ -11,19 +11,7 @@ pygame.init()
 
 ser = serial.Serial('/dev/tty.usbmodem101', 9600)
 
-while True:
-    if ser.in_waiting > 0:
-        data = ser.readline().decode().rstrip()
-        values = data.split(",")
-        if len(values) == 3:
-            try:
-                sensorValue1 = float(values[0])
-                sensorValue2 = float(values[1])
-                sensorValue3 = float(values[2])
-            except ValueError:
-                print("Invalid float values received")
-        else:
-            print("Invalid data format received")
+
 
 white = (255, 255, 255)
 yellow = (255, 255, 102)
@@ -84,7 +72,18 @@ def gameLoop():
     foody = round(random.randrange(0, dis_height - snake_block) / 10.0) * 10.0
 
     while not game_over:
-
+        if ser.in_waiting > 0:
+            data = ser.readline().decode().rstrip()
+            values = data.split(",")
+            if len(values) == 3:
+                try:
+                    sensorValue1 = float(values[0])
+                    sensorValue2 = float(values[1])
+                    sensorValue3 = float(values[2])
+                except ValueError:
+                    print("Invalid float values received")
+            else:
+                print("Invalid data format received")        
         while game_close == True:
             dis.fill(blue)
             message("You Lost! Press P-Play Again or Q-Quit", red)
@@ -109,10 +108,10 @@ def gameLoop():
         elif sensorValue2 > 0.5:
                     x1_change = snake_block
                     y1_change = 0
-        elif sensorValue1 > 0.5:
+        elif sensorValue1 < -0.5:
                     y1_change = -snake_block
                     x1_change = 0
-        elif sensorValue1 < -0.5:
+        elif sensorValue1 > 0.5:
                     y1_change = snake_block
                     x1_change = 0
 
