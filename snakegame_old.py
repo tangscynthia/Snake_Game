@@ -1,21 +1,8 @@
 import pygame
 import time
 import random
-import serial
 
 pygame.init()
-
-
-# # Serial port initialization
-# serial_port = serial.Serial('COM3', 9600)  # Replace with your Arduino port and baud rate
-
-print('pygame.USEREVENT', pygame.USEREVENT)
-
-# Pygame event types
-CUSTOM_EVENT_LEFT = pygame.USEREVENT + 1
-CUSTOM_EVENT_RIGHT = pygame.USEREVENT + 2
-CUSTOM_EVENT_UP = pygame.USEREVENT + 3
-CUSTOM_EVENT_DOWN = pygame.USEREVENT + 4
 
 white = (255, 255, 255)
 yellow = (255, 255, 102)
@@ -33,7 +20,7 @@ pygame.display.set_caption('Eat Up Snakey By Anupam')
 clock = pygame.time.Clock()
 
 snake_block = 10
-snake_speed = 3
+snake_speed = 15
 
 font_style = pygame.font.SysFont("bahnschrift", 27)
 score_font = pygame.font.SysFont("comicsansms", 37)
@@ -68,8 +55,8 @@ def gameLoop():
     snake_List = []
     Length_of_snake = 1
 
-    foodx = round(random.randrange(0+100, dis_width - snake_block-100) / 10.0) * 10.0
-    foody = round(random.randrange(0+100, dis_height - snake_block-100) / 10.0) * 10.0
+    foodx = round(random.randrange(0, dis_width - snake_block) / 10.0) * 10.0
+    foody = round(random.randrange(0, dis_height - snake_block) / 10.0) * 10.0
 
     while not game_over:
 
@@ -90,8 +77,7 @@ def gameLoop():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 game_over = True
-            # if event.type == pygame.KEYDOWN:
-            
+            if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
                     x1_change = -snake_block
                     y1_change = 0
